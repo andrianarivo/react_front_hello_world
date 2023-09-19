@@ -10,11 +10,14 @@ const initialState = {
 
 const getGreeting = createAsyncThunk('greetings/getGreeting', async ({ url }, thunkAPI) => {
   try {
-    const axiosInstance = axion.create({
-      headers: { "content-type": "application/json"}
-    })
-    const resp = await axiosInstance.get(url);
-    console.log(resp);
+    const config = {
+        headers: {
+          'Content-Type': 'application/json; charset=utf-8',
+          'Accept': 'application/json; charset=utf-8'
+        },
+        data: {},
+      };
+    const resp = await axios.get(url, config);
     return resp.data;
   } catch (e) {
     console.error(e);
