@@ -11,16 +11,15 @@ const initialState = {
 const getGreeting = createAsyncThunk('greetings/getGreeting', async ({ url }, thunkAPI) => {
   try {
     const config = {
-        headers: {
-          'Content-Type': 'application/json; charset=utf-8',
-          'Accept': 'application/json; charset=utf-8'
-        },
-        data: {},
-      };
+      headers: {
+        'Content-Type': 'application/json; charset=utf-8',
+        Accept: 'application/json; charset=utf-8',
+      },
+      data: {},
+    };
     const resp = await axios.get(url, config);
     return resp.data;
   } catch (e) {
-    console.error(e);
     return thunkAPI.rejectWithValue(`API call error ${e.message}`);
   }
 });
